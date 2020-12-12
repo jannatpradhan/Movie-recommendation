@@ -37,8 +37,14 @@ def recommender(movie_name, data, model, n_recommendations):
     print('Movie Selected: ', df_movies['title'][idx], 'Index: ', idx)
     print('Searching for recommendations.....')
     distances, indices = model.kneighbors(data[idx], n_neighbors=n_recommendations)
+
     for i in indices:
-        print(df_movies['title'][i].where(i != idx))
+        final_movies_matrix = df_movies['title'][i].where(i != idx)
+    df = pd.DataFrame(final_movies_matrix)
+
+    #making final list from pandas column
+    final_data = df['title'].tolist()
+    return final_data
 
 
 #movie_name=str(input("Enter Movie Name : "))
@@ -46,11 +52,17 @@ def recommender(movie_name, data, model, n_recommendations):
 
 
 
-@app.route("/")
+@app.route("/",methods=['GET', 'POST'])
 def student():
-    movie_name = str(input("Enter Movie Name : "))
-    recommender(movie_name, mat_movies_users, model_knn, 20)
-    return render_template('websites/index.html')
+    if request.method == 'POST':
+        # Then get the data from the form
+        movie_name = request.form['search_field']
+
+    #movie_name = str(input("Enter Movie Name : "))
+        movie_list=recommender(movie_name, mat_movies_users, model_knn, 20)
+        return render_template('websites/index.html',movie_list=movie_list)
+    else:
+        return render_template('websites/index.html')
 
 @app.route("/result",methods=['POST','GET'])
 def result():

@@ -32,9 +32,13 @@ def recommender(movie_name, data, model, n_recommendations):
     print('Movie Selected: ', df_movies['title'][idx], 'Index: ', idx)
     print('Searching for recommendations.....')
     distances, indices = model.kneighbors(data[idx], n_neighbors=n_recommendations)
+
     for i in indices:
-        print(df_movies['title'][i].where(i != idx))
+        final_movies_matrix=df_movies['title'][i].where(i != idx)
+    df=pd.DataFrame(final_movies_matrix)
+    final_data=df['title'].tolist()
+    return  final_data
 
 
 movie_name=str(input("Enter Movie Name : "))
-recommender(movie_name, mat_movies_users, model_knn, 20)
+print(recommender(movie_name, mat_movies_users, model_knn, 20))
