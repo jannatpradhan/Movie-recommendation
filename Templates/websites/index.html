@@ -37,18 +37,26 @@
 			  fill="currentColor" class="octo-body"></path>
 		      </svg>
 		    </a>
+
+
+    <!-- Search Areas-->
     <center><h1 style=""> Movie Recommendation System</h1></center>
     <form method="POST" accept-charset="utf-8">
 	    <div class="form-group shadow-textarea" style="margin-top: 30px;text-align: center;color: white;">
 	        <input type="text" name="search-field" class="movie form-control" id="autoComplete" autocomplete="off" placeholder="Enter the Movie Name" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #181818" required="required" />
 	        <br>
+             <input type="submit" value="GO!" class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" />
 	    </div>
+    </form>
 
 	    <div class="form-group" style="text-align: center;">
+            <input type="submit" value="GO!" class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" />
 	      <button class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" >Enter</button><br><br>
 	    </div>
-	</form>
+
 	</div>
+
+
 
   <div id="loader" class="text-center">
   	       {% for data in movie_list %}
