@@ -67,15 +67,10 @@ def student():
         selected_movie=merge_data[0]
         recommended_list=merge_data[1]
         print(recommended_list)
-<<<<<<< HEAD
-        return render_template('website/index.html',movie_list=recommended_list[1:],selected_movie=selected_movie)
-    else:
-        return render_template('website/index.html')
-=======
         return render_template('index.html',movie_list=recommended_list[1:],selected_movie=selected_movie)
     else:
         return render_template('index.html')
->>>>>>> ui2
+
 
 @app.route("/result",methods=['POST','GET'])
 def result():
