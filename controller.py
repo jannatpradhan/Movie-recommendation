@@ -33,8 +33,10 @@ model_knn.fit(mat_movies_users)
 
 def recommender(movie_name, data, model, n_recommendations):
     model.fit(data)
+    merge_data=[]
     idx = process.extractOne(movie_name, df_movies['title'])[2]
     print('Movie Selected: ', df_movies['title'][idx], 'Index: ', idx)
+
     print('Searching for recommendations.....')
     distances, indices = model.kneighbors(data[idx], n_neighbors=n_recommendations)
 
@@ -44,7 +46,9 @@ def recommender(movie_name, data, model, n_recommendations):
 
     #making final list from pandas column
     final_data = df['title'].tolist()
-    return final_data
+    merge_data.append(df_movies['title'][idx])
+    merge_data.append(df['title'].tolist())
+    return merge_data
 
 
 #movie_name=str(input("Enter Movie Name : "))
@@ -59,10 +63,13 @@ def student():
         movie_name = request.form['search_field']
 
     #movie_name = str(input("Enter Movie Name : "))
-        movie_list=recommender(movie_name, mat_movies_users, model_knn, 20)
-        return render_template('websites/index.html',movie_list=movie_list)
+        merge_data=recommender(movie_name, mat_movies_users, model_knn, 20)
+        selected_movie=merge_data[0]
+        recommended_list=merge_data[1]
+        print(recommended_list)
+        return render_template('website/index.html',movie_list=recommended_list[1:],selected_movie=selected_movie)
     else:
-        return render_template('websites/index.html')
+        return render_template('website/index.html')
 
 @app.route("/result",methods=['POST','GET'])
 def result():
