@@ -35,6 +35,7 @@ def recommender(movie_name, data, model, n_recommendations):
 
     for i in indices:
         final_movies_matrix=df_movies['title'][i].where(i != idx)
+    print(final_movies_matrix)
     df=pd.DataFrame(final_movies_matrix)
     final_data=df['title'].tolist()
     return  final_data
