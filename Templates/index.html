@@ -24,7 +24,11 @@
 <body id="content" style="font-family: 'Noto Sans JP', sans-serif;">
 
 	<div class="ml-container" style="display: block;">
+<<<<<<< HEAD:Templates/websites/index.html
 		<a href="https://github.com/jannatpradhan/Movie-recommendation.git" target="_blank" class="github-corner" title="View source on GitHub">
+=======
+		<a href="" target="_blank" class="github-corner" title="View source on GitHub">
+>>>>>>> ui2:Templates/index.html
 		      <svg data-toggle="tooltip"
 		      data-placement="left" width="80" height="80" viewBox="0 0 250 250"
 			style="fill:#e50914; color:#fff; position: fixed;z-index:100; top: 0; border: 0; right: 0;" aria-hidden="true">
@@ -55,8 +59,10 @@
 
 
 <!-- Rendering movie data -->
+<h4 align="center" style="color: white">Movie Found:	{{selected_movie}}<br>Recommendations:<br></h4>
+
 {% for data in movie_list %}
-	<h6 align="center" style="color: white">{{data}}</h6><br>
+	<h5 align="center" style="color: white;font-size: 16px;">{{data}}</h5><br>
 {% endfor %}
 
 
